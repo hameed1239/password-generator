@@ -23,6 +23,10 @@ function getPasswordLength() {
 
   do {
     passwordLength = parseInt(window.prompt("Enter desired password length between 8 and 128"));
+    
+    if (isNaN(passwordLength) === true) {
+      break;
+    }
   } while (!isValidNum(passwordLength));
 
 }// end get password length
@@ -377,6 +381,7 @@ function passwordGenerator() {
     case 15: // Lowercase, uppercase, numbers, and special characters 
       for (var i = 0; i < passwordLength; i++) {
         var x = Math.floor(Math.random() * 4);
+
         if (i === 1) {
           randomPassword[i] = randomNumber();
         }
@@ -413,27 +418,28 @@ function passwordGenerator() {
 function writePassword() {
 
   getPasswordLength();
-  isUppercase = includeUppercase();
-  isLowercase = includeLowercase();
-  isNumbers = includeNumbers();
-  isSpecialCharacter = includeSpecialChar();
-
-  // isValidCrite = isValidCriteria();
-  if (isValidCriteria(isUppercase, isLowercase, isNumbers, isSpecialCharacter)) {
-    passwordCombination = getPasswordCombination();
-    passwordGenerator();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = "";
-    passwordText.value = `${passwordLength} ${isUppercase} ${isLowercase} ${isNumbers} ${isSpecialCharacter} ${passwordCombination} ${randomPassword}`;
-    //passwordText.value = password;
-
+  if (isNaN(passwordLength) === true) {
+    alert("You have quit the generator");
   }
   else {
-    window.alert("Paswword must contain atleast uppercase, lowercase, number or special characters");
+    isUppercase = includeUppercase();
+    isLowercase = includeLowercase();
+    isNumbers = includeNumbers();
+    isSpecialCharacter = includeSpecialChar();
+
+    // isValidCrite = isValidCriteria();
+    if (isValidCriteria(isUppercase, isLowercase, isNumbers, isSpecialCharacter)) {
+      passwordCombination = getPasswordCombination();
+      passwordGenerator();
+      var passwordText = document.querySelector("#password");
+
+      passwordText.value = "";
+      passwordText.value = `${randomPassword.join("")}`;
+    }
+    else {
+      window.alert("Paswword must contain atleast uppercase, lowercase, number or special characters");
+    }
   }
-
-
 }
 
 // Add event listener to generate button
