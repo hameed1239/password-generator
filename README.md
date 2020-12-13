@@ -12,7 +12,7 @@ A website that generates password depending on creteria selected by user.
 https://hameed1239.github.io/password-generator/
 
 ![Website Screenshot](./Assets/images/Capture.PNG)
-Format: ![Alt Text] (url)
+
 ## Contribution
 Made by Hameed Kazeem
 
